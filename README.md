@@ -10,7 +10,7 @@
 
 # Table of Contents
 1. Array / String
-    - [Best Time to Buy and Sell Stock II](Array&String/Best_Time_to_Buy_and_Sell_Stock_II.py)
+    - [Best Time to Buy and Sell Stock II](Array%20%26%20String/Best_Time_to_Buy_and_Sell_Stock_II.py)
 3. Two Pointers
 4. Sliding Window
 5. Matrix
