@@ -40,7 +40,7 @@ class Solution(object):
         #Among possible index range of jump, choose the index which has the largest number(next index range of jump). In other words, choose the index which can jump farthest among options.
 
         """
-        Day 1 approach
+        Day 1 approach  (30/110 test cases passed)
             1. Initialize variables which help me to simplify my code
             2. Handle special cases:
                 - When length of array is 1, return 0 immediately.
@@ -82,3 +82,67 @@ class Solution(object):
             
 
         return mj
+
+
+class Solution(object):
+    def jump(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        
+        """
+        Day 2 Approach (26/110 test cases passed)
+            1. Initialize n to length of array nums and jumps to total number of jumps needed to reach the end of the array nums.
+            2. Loop for all indexs in array nums. (Let's use while loop this time!)
+                1) Check for each index's farthest reaching point.
+                2) Compare all numbers within farthest point.
+                3) Select biggest number to be next base point (where it will begin jump next time).
+                4) Update i and total number of jumps.
+            3. If the i reaches the end of the array, terminate the loop and return number of jumps.
+        """
+
+        # passed test cases: [2, 3, 1, 1, 4], [0], [1, 2], etc..
+        # failing test case: [2, 3, 1]
+
+        n = len(nums)
+        jumps = 0
+        i = 0
+
+        if n <= 1:
+            return 0
+        elif n == 2:
+            return 1
+
+        while i < n:
+            
+            farthest = 0
+            farthest += nums[i]  #i = 0 / nums[i] = 2 (First loop)
+                                 #i = 1 / nums[i] = 3 (Second loop)
+            
+            if i + farthest + 1 > n:
+                jumps += 1
+                break
+
+            if i + farthest + 1 == n:
+
+                break 
+
+            biggest_num = 0
+            biggest_pos = 0
+            for j in range(i + 1, i + farthest + 1): #1 ~ 3 (First loop) actual => 1 ~ 2
+                                                     #2 ~ 5 (Second loop) actual => 2 ~ 4
+                
+                if nums[j] > biggest_num: #(First loop)when j = 1, biggest_num = 3 / pos = 1 #when j = 2, biggest_num = 3 / pos = 1
+                                          #(Second loop)when j = 2, biggest_num = 1 / pos = 2 #When j = 3, biggest_num = 1 / pos = 2
+                                                        #when j = 4, biggest_num = 4 / pos = 4 
+                    biggest_num = nums[j] 
+                    biggest_pos = j
+            i += biggest_pos #(First loop) 0 + 1 = 1
+                             #(Second loop) 1 + 4 = 5
+            
+            jumps += 1 #(First loop) 0 + 1 = 1
+                       #(Second loop) 1 + 1 = 2
+        return jumps
+                
+
