@@ -155,7 +155,7 @@ class Solution(object):
         """
         
         """
-        Day 3 Approach
+        Day 3 Approach (29/110 test cases passed)
         Realized that my approach to this problem might be wrong. Let's plan and recheck my approach. 
             1. We need to know how far it can jump at index 0.
             2. Then, need to know all numbers from index 0 to farthest reaching point.
@@ -170,3 +170,37 @@ class Solution(object):
                 - Loop and max(), both are O(n) time complexity and are equal in efficiency.
             * 
         """
+        # failing test case: [1, 1, 1, 1, 1]
+
+
+        n = len(nums)
+        jumps = 0
+        i = 0
+
+        if n <= 1:
+            return 0
+        elif n == 2:
+            return 1
+        
+
+        while i < n:
+
+            f_jump = 0
+            f_jump = nums[i]
+            
+            if i + f_jump + 1 == n:
+                jumps +=1
+                break
+            
+            m_jump = 0
+            m_pos = 0
+
+            for j in range(i + 1, i + f_jump + 1):
+                if nums[j] >= m_jump:
+                    m_jump = nums[j]
+                    m_pos = j
+            
+            i += m_pos
+            jumps += 1
+        return jumps
+
