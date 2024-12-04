@@ -146,3 +146,27 @@ class Solution(object):
         return jumps
                 
 
+
+class Solution(object):
+    def jump(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        
+        """
+        Day 3 Approach
+        Realized that my approach to this problem might be wrong. Let's plan and recheck my approach. 
+            1. We need to know how far it can jump at index 0.
+            2. Then, need to know all numbers from index 0 to farthest reaching point.
+            3. Compare all and move to the index which has greatest jump range.
+            4. Keep doing until we reach the last index or skip the last index. 
+                - In step 2, we need to update starting index from 0 to next index where we will start jumping.
+            5. We need to create several base cases which help us to handle special cases before we enter complex loop.
+                - Such as when list are [0] or [1, 1], etc.
+
+            * Should we use loop to compare all numbers within range of jump?
+                - I can use max() and index() built-in function to find it, but it might be little complex.
+                - Loop and max(), both are O(n) time complexity and are equal in efficiency.
+            * 
+        """
