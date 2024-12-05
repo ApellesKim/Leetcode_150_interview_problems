@@ -204,3 +204,48 @@ class Solution(object):
             jumps += 1
         return jumps
 
+class Solution(object):
+    def jump(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        
+        """
+        Day 4 Approach (93/110 test cases passed)
+            Previously, I had a misunderstanding about the approach. I tried to find a biggest number within range of jump index instead of finding an index which can jump farthest within range. There might have been some cases like [3, 5, 1, 4, 1, 3, 2]. According to my previous logic, within range of 3, since 5 is the biggest number, choose 5 instead of 4. In this way, this isn't the efficient way. Since 5 at index 1 can't go farther than 4 at index 3. So, according to my current logic, I should set the farthest point at index 0, which is index 3. Within that range, this should loop to find which number can go farthest. Then, when the pointer reach the farthest point of index 0, jump to the index which can go farthest and keep going till reaching the end of the list.
+
+            1. Initialize len(nums), total number of jumps, current index's farthest point, farthest reachable point. 
+            2. Loop through n.
+                - Everytime it loops thourh n, update the farthest reaching point at each index.
+                - If the pointer reaches the end of the current index, update current end to farthest.
+                - Then, increment jump by 1.
+            3. Create a condition which handles special cases such as when length of list is smaller than and equal to 1.
+        """
+
+        #failing test case : [3, 2, 1]
+
+
+        n = len(nums)
+        jumps = 0
+        current_end = nums[0]
+        farthest = 0
+
+        if n <= 1:
+            return 0
+
+        if n == 2:
+            return 1
+
+        for i in range(n - 1):
+            farthest = max(farthest, i + nums[i])
+
+            if i >= current_end:
+                current_end = farthest
+                jumps += 1
+
+                if current_end >= n - 1:
+                    jumps += 1
+                    break;
+
+        return jumps
