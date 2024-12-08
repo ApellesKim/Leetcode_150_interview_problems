@@ -243,3 +243,24 @@ class Solution(object):
                 jumps += 1
 
         return jumps
+
+
+
+
+
+
+        
+
+"""
+Key Learning
+- Initially, I believed that a greedy algorithm could be the right approach to solve this problem. I learned how to choose an appropriate algorithm based on the problem at hand.
+- I decided to solve the problem on my own, avoiding external solutions. After nearly 4 days of working on it, I realized I had been too focused on my initial approach, and I struggled to think of alternative ideas or see the problem from different angles.
+
+Challenges
+- Even though I tried various perspectives, my strategy stayed the same for those four days. Confident that my approach was correct, I couldn’t consider other possibilities and kept trying to fix my original code. Unfortunately, I couldn’t identify the issue or figure out how to adjust my solution. Eventually, I realized I couldn't solve it by myself and decided to refer to an existing solution. This gave me a fresh perspective, and I discovered a small mistake in my code.
+
+How to complement the challenges next time
+- Looking ahead, I know this situation could happen again. Even if I can identify the right approach or algorithm, I might still struggle with implementing it due to gaps in my understanding. I recognize that using search engines to find helpful resources is a valuable skill in itself.
+- That said, I need to be cautious when relying on external sources, as it's easy to fall into the trap of simply copying a solution instead of truly developing my problem-solving abilities. The key takeaway from this experience should be improving my skills in problem-solving and algorithm design.
+- Going forward, I'll commit to spending up to three days solving a problem on my own, using all the knowledge and techniques at my disposal. Only after this will I seek outside help, ensuring that I fully understand the problem and have made every effort to solve it before referring to external solutions.
+"""
