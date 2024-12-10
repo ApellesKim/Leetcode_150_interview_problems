@@ -2,15 +2,21 @@
 **My Goal**
 1. Try to solve **one question** everyday
 2. Develop **problem-solving** skill
-    - Do not refer to **any hints** and Think **on my own** until find the answer
+    - Do not refer to **any hints** 
+    - Think **on my own**
 3. Record **journey** of all process
 4. Learn from **solving** the problem, **organizing** my process, **reviewing** notes
 5. Increase my knowledge about **python**
 6. Get used to diverse **algorithms** and **applications**
+7. Improve my skill in algorithm design
 
 # Table of Contents
 1. Array / String
     - [Best Time to Buy and Sell Stock II](Array%20%26%20String/Best_Time_to_Buy_and_Sell_Stock_II.py)
+    - [Jump Game](Array%20%26%20String/Jump_Game.py)
+    - [Jump Game II](Array%20%26%20String/Jump_Game_II.py)
+    - [H-Index](Array%20%26%20String/H-Index.py)
+
 3. Two Pointers
 4. Sliding Window
 5. Matrix
