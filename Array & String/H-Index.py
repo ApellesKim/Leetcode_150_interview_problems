@@ -23,3 +23,29 @@ n == citations.length
 1 <= n <= 5000
 0 <= citations[i] <= 1000
 """
+
+class Solution(object):
+    def hIndex(self, citations):
+        """
+        :type citations: List[int]
+        :rtype: int
+        """
+
+        #Day 1 approach
+        """
+        When calculating h-index, it's useful to follow these steps.
+            1. List all of your published papers
+            2. Count the number of citations for each paper
+            3. Sort the papers by citation count
+            4. Find the h-index
+                - Start from the biggest citation.
+                - Compare its citation number and its index.
+                - If citation number is smaller than index, return that index as h-index
+                - If greater, move to the next index and compare the same.
+        Let's try writing this into a pseudocode
+        """
+        
+        lst = sort(citations)
+        h_index = 0
+        for i in range(n):
+            
