@@ -45,7 +45,43 @@ class Solution(object):
         Let's try writing this into a pseudocode
         """
         
-        lst = sort(citations)
-        h_index = 0
-        for i in range(n):
+        #lst = sort(citations)
+        #h_index = 0
+        #for i in range(n):
             
+
+
+class Solution(object):
+    def hIndex(self, citations):
+        """
+        :type citations: List[int]
+        :rtype: int
+        """
+
+        #Day 2 approach (Continaution of day 1)
+        """
+        When calculating h-index, it's useful to follow these steps.
+            1. List all of your published papers
+            2. Count the number of citations for each paper
+                - It's already listed in the citations.
+            3. Sort the papers by citation count
+                - Let's use .sort() method. Here, we need to sort descendingly, so let's use reverse=True.
+            4. Find the h-index
+                - Start from the biggest citation.
+                - Compare its citation number and its index.
+                - If citation number is smaller than index, return that index as h-index
+                - If greater, move to the next index and compare the same.
+        Let's try writing this into a pseudocode
+        """
+        
+        citations.sort(reverse=True) #sorting the list descendingly
+        h_index = 0 #initializing h_index to 0
+        n = len(citations)
+
+        for i in range(n): #this will loop through the list
+            if citations[i] >= i + 1: #Calcualte h_index from biggest number.
+                h_index += 1
+            else:
+                break #If any i fails, doesn't need to check any further becuase the numbers are sorted descendingly.
+        
+        return h_index #After the loop breaks, just return h_index.
