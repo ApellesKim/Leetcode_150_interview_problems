@@ -102,3 +102,81 @@ class RandomizedSet(object):
 # param_1 = obj.insert(val)
 # param_2 = obj.remove(val)
 # param_3 = obj.getRandom()
+
+
+class RandomizedSet(object):
+
+    #Day 2 Approach (I realized that since set also uses hash table to store elements, we can use map instead of set. It's also O(1) time complexity. Using both map and list can be efficient in time complexity, in other words, it can run in O(1) time complexity.)
+    """
+    In day 1, insert and remove methods run in O(1) time complexity, but getRandom didn't. Random.choice() function can only be used in list, tuple, or string, which can directly access elements by index. So, in a process of converting set to list, the method ran in O(n) time complexity.
+
+    So, today's goal is to fix getRandom function to run in O(1) time complexity.
+
+    Possible solutions:
+    1. Create a list and update it as well as set. Then, it might be able to use random.choice() function.
+        - However, while checking val in list, I shouldn't use for loop since it becomes O(n).
+            1) So, we can just follow as set does. (After checking though set, we can add for both set and list.)   
+    Removing specific number from a list is running in O(n) time complexity. So, creating a list might not be a good idea.
+
+    2. Create a map and list. 
+        - Need a better understanding about method remove().
+    
+    """
+    def __init__(self):
+        self.d_map = {}
+        self.d = [] 
+
+    def insert(self, val):
+        """
+        :type val: int
+        :rtype: bool
+        """
+        if val in self.d_map: #checking dictionary is O(1) while checking array is O(n)
+            return False
+        
+        self.d_map[val] = len(self.d) #key is val, and value is index of the new element 
+        self.d.append(val) #Adding value to the list
+
+        return True
+        
+
+    def remove(self, val):
+        """
+        :type val: int
+        :rtype: bool
+        """
+        if not val in self.d_map:
+            return False
+
+        #moving last element in list to the position of element, which we will remove.
+        last_elem = self.d[-1]
+        remv_elem_i = self.d_map[val]
+
+        self.d_map[last_elem] = remv_elem_i
+        self.d[remv_elem_i] = last_elem 
+
+        self.d[-1] = val
+
+        self.d.pop()
+
+        self.d_map.pop(val)
+        return True
+        
+
+        
+
+    def getRandom(self):
+        """
+        :rtype: int
+        """
+        #This conversion of set to list is O(n) time complexity.
+        return random.choice(self.d)
+
+        
+
+
+# Your RandomizedSet object will be instantiated and called as such:
+# obj = RandomizedSet()
+# param_1 = obj.insert(val)
+# param_2 = obj.remove(val)
+# param_3 = obj.getRandom()
