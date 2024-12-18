@@ -180,3 +180,74 @@ class RandomizedSet(object):
 # param_1 = obj.insert(val)
 # param_2 = obj.remove(val)
 # param_3 = obj.getRandom()
+
+
+class RandomizedSet(object):
+
+    #Day 3 Approach 
+    """
+    1. Create a map and list. 
+        1) method init()
+            - Create an empty map and list which will be used through entire class.
+        2) method insert()
+            - We are inserting a value only if the value is not present in the map.
+            - If the value is already present in the map, immediately return False.
+            - Otherwise, we are going to insert the value into the map. (val is the key, and value is index + 1)
+            - Also, add the value to the end of the list.
+            - Then, return True.
+        3) method remove()
+            - Same as insert(), we can remove only when the value is present in the map.
+            - Check and if the value is not present, return False immediately.
+            - If the value is found in the map:
+                - We are going to switch the position of target value with last value of the list. Then, pop the last value.
+                - Initialize two variables: last_elem & i_remv_elem
+                - Then swap last element and removable element.
+        4) method getRandom()
+            - random.choice() function can randomly pick a number from a list in O(1) time complexity.
+
+    Therefore, every method in this class runs in O(1) time complexity. Hurray!
+
+    
+    """
+    def __init__(self):
+        self.d_map = {}
+        self.d = [] 
+    def insert(self, val):
+        """
+        :type val: int
+        :rtype: bool
+        """
+        if val in self.d_map: #checking dictionary is O(1) while checking array is O(n)
+            return False
+        
+        self.d_map[val] = len(self.d)  
+        self.d.append(val) 
+
+        return True
+    def remove(self, val):
+        """
+        :type val: int
+        :rtype: bool
+        """
+        if not val in self.d_map:
+            return False
+                                      # want to remove 4
+        last_elem = self.d[-1]        # map [2:0, 4:1, 7:2, 1:3, 0:4] / list [2, 4, 7, 1, 0]
+        i_remv_elem = self.d_map[val] # last_elem = 0 / i_remv_elem = 2
+
+        self.d_map[last_elem] = i_remv_elem #d_map[0] = 2
+        self.d[i_remv_elem] = last_elem     #d[2] = 0 -> [2, 0, 7, 1, 0]
+
+        self.d[-1] = val                    #[2, 0, 7, 1, 4]
+
+        self.d.pop()                        #remove 4 at the end.
+
+        self.d_map.pop(val)                 #remove 4:2.
+        return True
+
+    def getRandom(self):
+        """
+        :rtype: int
+        """
+
+        return random.choice(self.d)
