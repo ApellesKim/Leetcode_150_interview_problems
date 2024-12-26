@@ -69,3 +69,56 @@ class Solution(object):
             ans.append(product)
 
         return ans
+
+
+class Solution(object):
+    def productExceptSelf(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        #Day 2 Approach (Complete!)
+        """
+        In day 1, I wrote an algorithm that runs in O(n^2) time, and that caused a problem when nums had numerous elements. So, I should use another algorithm which runs in O(n) time.
+
+        Let's use prefix/suffix product.
+
+        1. Create two lists which will store products of prefix and suffix. 
+            - Both with n elements, and all the elements are initialized to 1.
+            - 1 is often the neutral element (multiplicative identity). Multiplying any number by 1 doesn't change its value, so this initialization makes sense for prefix products.
+        2. Calculate prefix:
+            - This will loop through index 1 to n (right before n).
+            - Since it's i - 1, it excludes itself and updates prefix.
+            - Example : nums[1, 2, 3, 4] / prefix[1, 1, 1, 1]
+                prefix[0] = 1 because there's no number before index 0.
+                when i = 1, prefix[1] = 1 * 1 = 1
+                when i = 2, prefix[2] = 2 * 1 = 2
+                when i = 3, prefix[3] = 3 * 2 = 6
+                So, prefix[1, 1, 2, 6]
+        3. Calculate suffix:
+            - This will loop from second last index to 0 backwards.
+            - It also excludes itself.
+            - Example : nums[1, 2, 3, 4]
+                suffix[3] = 1
+                suffix[2] = 1 * 4 = 4
+                suffix[1] = 4 * 3 = 12
+                suffix[0] = 12 * 2 = 24
+                So, suffix[24, 12, 4, 1]
+        4. Multiply prefix and suffix to find product of array except i itself.
+        """
+        n = len(nums)
+
+        prefix = [1] * n
+        suffix = [1] * n
+
+        
+        for i in range(1, n):
+            prefix[i] = prefix[i - 1] * nums[i - 1]
+        
+        for i in range(n - 2, -1, -1):
+            suffix[i] = suffix[i + 1] * nums[i + 1]
+        
+        answer = [prefix[i] * suffix[i] for i in range(n)]
+        
+        return answer
+
