@@ -39,3 +39,31 @@ n == gas.length == cost.length
 0 <= gas[i], cost[i] <= 104
 """
 
+class Solution(object):
+    def canCompleteCircuit(self, gas, cost):
+        """
+        :type gas: List[int]
+        :type cost: List[int]
+        :rtype: int
+        """
+        
+        #Day 1 Approach (I currently have no idea about how to solve this problem. However, I will not give up finding it.)
+        """
+        First, I can start at any of gas sataions which make it possible to travel around the circuit once.
+        If there's none of gas stations which fulfill above condition, return -1.
+
+        To reach next station safely, gas at i should be greater than cost at i. If passed this condition, we need to calcuate tank.
+        If this began at last index, it need to go back to the first index.
+        """
+        n = len(gas)
+        count = 0
+        tank = 0
+
+        for i in range(n):
+    
+            if tank + gas[i] < cost[i]:
+                count += 1
+            else:
+                tank = tank + gas[i] - cost[i]
+        if count != n:
+            return -1
