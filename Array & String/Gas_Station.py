@@ -67,3 +67,69 @@ class Solution(object):
                 tank = tank + gas[i] - cost[i]
         if count != n:
             return -1
+        
+
+class Solution(object):
+    def canCompleteCircuit(self, gas, cost):
+        """
+        :type gas: List[int]
+        :type cost: List[int]
+        :rtype: int
+        """
+        #Day 2 Approach
+        """
+        I totally have no idea about where to start solving the problem.
+        So, I referred to solution and tried to understand the problem with detail examples.
+        Probably that example gave me some hint. Let't try by myself.
+
+        I learned about modular arithmetic, which handle this circular behavior.
+        
+        next_index = (i+1)%n
+
+        Using this, I can try to approach this problem.
+        1. Initialize tank = 0 and index = 0.
+        2. Start at index 0. Calculate plus and minus of oil at each gas station.
+            - Add gas[i] and minus cost[i]
+        3. If tank is less than 0, restart looping cycle from that index.
+
+        There might be a problem simply using double for loop because n can be huge in size.
+        Use for loop? 
+
+        Yes.
+        Use for loop.
+        1. Calculate total amount of oil in the tank. 
+        2. Also, calculate amount of oil in the tank at every gas station.
+        3. At every gas station, if amount of oil in the tank is less than 0, tank will be reset and restart from next index.
+        4. If total amount of oil in the tank is less than 0, there is no possibility that the car can't make up through all gas stations. Else, return starting index.
+        """
+        #First solution
+        tank = 0
+        total = 0
+        s_index = 0
+        n = len(gas)
+
+        for i in range(n):
+            total += gas[i] - cost[i]
+            tank += gas[i] - cost[i]
+            if tank < 0:
+                tank = 0
+                s_index = i + 1
+        
+        return -1 if (total < 0) else s_index
+
+#More efficient version of solution (Faster in runtime)
+class Solution(object):
+    def canCompleteCircuit(self, gas, cost):
+        n = len(gas)
+        tank = 0
+        start = 0
+        
+        if sum(gas) < sum(cost):
+            return -1
+        
+        for i in range(n):
+            tank += gas[i] - cost[i]
+            if tank < 0:
+                tank = 0
+                start = i + 1
+        return start
